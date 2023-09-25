@@ -35,7 +35,8 @@ if __name__ == "__main__" :
 
     args = parser.parse_args()
 
-    os.environ["CUDA_VISIBLE_DEVICES"] = "0" # if you want to use more gpus, set more numbers
+    os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3" # if you want to use more gpus, set more numbers
+    # os.environ["CUDA_VISIBLE_DEVICES"] = "" # if you want to use more gpus, set more numbers
 
     print(args.model_path)
     tokenizer = transformers.AutoTokenizer.from_pretrained(
