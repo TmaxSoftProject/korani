@@ -1,0 +1,40 @@
+우리는 아래와 같은 정보를 갖고 있습니다.
+---------------------
+
+
+2.2.2. Servlet
+listener 및 connector의 use-nio 설정 제거
+
+리스너의 NIO는 JEUS 7까지만 지원하고 JEUS 8부터는 지원하지 않기 때문에 이에 맞춰 제거되었다.
+
+webtob-connector의 use-nio 및 관련 thread-pool 설정, tmax-listener의 use-nio 및 selector-count 설정이 제거되었다.
+
+webtob-connector의 wjp-version 기본값을 2로 변경
+
+JEUS 8부터는 WebtoB 연결을 생성하는 경우 기본값이 WJP Version 2로 변경되었다.
+
+WebtoB 4.1.6 이하 버전은 WJP Version 2를 지원하지 않기 때문에 wjp-version을 반드시 1로 설정해야 한다.
+
+WebSocket 기본 지원
+
+특별한 설정 없이 WebSocket을 사용할 수 있도록 변경되었다(기존에는 jeus-web-dd.xml에 설정). 따라서, jeus-web-dd.xml을 생성해 주는 webddgen 명령의 websocket 옵션도 삭제되었다.
+
+webinf-first 스키마 변경
+
+JEUS 7까지는 하위 호환을 위하여 mixed 속성을 사용하여 webinf-first를 변경하였으나, JEUS 8부터는 element를 추가하는 방식으로 변경되었다.
+
+distributed websocket session을 distributed user properties로 변경
+
+distributed websocket session 기능은 jsessionid가 같은 서로 다른 websocket session이 같은 userproperties 맵을 공유할 수 있도록 하는 기능이다. 따라서 해당 기능에 맞게 명칭을 변경하고 설정의 형태도 attribute에서 child element를 가지는 형태로 변경한다
+
+HTTP Parameter의 empty string 처리 개선
+
+HttpServletRequest.getParameter()에서 value가 empty string일 경우 empty string을 리턴하도록 통일하였다.
+
+기존에는 Query String과 x-www-form-urlencoded에서는 empty string을 리턴하고 multipart/form-data에서는 'new String()'하여 리턴하였으나, 3가지 유형 모두 empty string을 리턴하도록 변경하였다.
+
+
+---------------------
+
+### 주어진 정보에 따라, 질문에 답해주세요.: 'JEUS 7까지는 하위 호환을 위하여 webinf-first를 변경하기 위해 어떤 속성을 사용하였나요?'
+### Assistant:
